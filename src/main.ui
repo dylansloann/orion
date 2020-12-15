@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>860</width>
+    <height>591</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="background">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>861</width>
+      <height>591</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Orion/assets/background/background2.0.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="scanButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>330</y>
+      <width>181</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Orion/assets/Icons/scan2.0.png</normaloff>Orion/assets/Icons/scan2.0.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>210</width>
+      <height>246</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backupButtom">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>330</y>
+      <width>181</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Orion/assets/Icons/backup2.0.png</normaloff>Orion/assets/Icons/backup2.0.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>210</width>
+      <height>246</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="passwordButton">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>330</y>
+      <width>181</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Orion/assets/Icons/password2.0.png</normaloff>Orion/assets/Icons/password2.0.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>210</width>
+      <height>246</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="aboutButton">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>330</y>
+      <width>181</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>Orion/assets/Icons/about2.0.png</normaloff>Orion/assets/Icons/about2.0.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>210</width>
+      <height>246</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="checkMark">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>180</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Orion/assets/Icons/checkmark.png</pixmap>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
