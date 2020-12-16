@@ -3,7 +3,7 @@ from passwordManager import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QtWidgets.QWidget):
     # default constructor of GUI window
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("Orion")
@@ -49,6 +49,8 @@ class Ui_MainWindow(object):
         self.scanButton.clicked.connect(self.scanPopup)
 
     def scanPopup(self):
+        # answer = QtWidgets.QInputDialog.getText(self, "Virus Found! ", 'Please type Y/N: ')
+        self.checkMark.setPixmap(QtGui.QPixmap("../assets/Icons/xmark.png"))
         self.scanner = scanWindow()
         self.scanner.show()
 
@@ -107,10 +109,18 @@ class Ui_MainWindow(object):
         self.checkMark.setPixmap(QtGui.QPixmap("../assets/Icons/checkmark.png"))
         self.checkMark.setObjectName("checkMark")
 
+    # used for scanner window to be able to change protection status
+    def changeToUnprotected(self):
+        self.checkMark.setPixmap(QtGui.QPixmap("../assets/Icons/xmark.png"))
+
+    def changeToProtected(self):
+        self.checkMark.setPixmap(QtGui.QPixmap("../assets/Icons/checkmark.png"))
+
     # reupdates names of 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Orion"))
+
 
 # driver code
 if __name__ == "__main__":

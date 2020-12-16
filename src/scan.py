@@ -1,18 +1,17 @@
-from PyQt5.QtWidgets import * 
-from PyQt5.QtGui import * 
-from PyQt5.QtCore import *
-import rules
+from PyQt5 import QtCore, QtGui, QtWidgets
+from rules import *
 import sys, os, time
+import main
 
-class scanWindow(QWidget): 
+class scanWindow(QtWidgets.QWidget): 
 	def __init__(self): 
 		super().__init__()  
 		self.initUI() 
    
 	def initUI(self):  
-		self.pbar = QProgressBar(self) 
+		self.pbar = QtWidgets.QProgressBar(self) 
 		self.pbar.setGeometry(30, 40, 200, 25) 
-		self.startButton = QPushButton('Start', self) 
+		self.startButton = QtWidgets.QPushButton('Start', self) 
 		self.startButton.move(40, 80) 
 		self.startButton.clicked.connect(self.startScan) 
 		self.setGeometry(820, 400, 280, 170) 
@@ -20,45 +19,38 @@ class scanWindow(QWidget):
 		self.show() 
   
 	def startScan(self):
+		# uses global rules
+		global rules
+
 		# finding home path
 		home = os.path.expanduser("~")
 		dirs = os.listdir(home)
 		count = 0
 
 		# iterates through each directory
-		for root, dirs, files in os.walk(home):
+		for root, dirs, files in os.walk(r'C:\Users\dylan\Desktop'):
 			# iterates through each file
 			for file in files:
+				# handles if certain files cause program to crash
 				try:
 					# attaches root of path for checking against YARA rules
 					conjoinedPath = os.path.join(root, file)
-					absolutePath = os.path.abspath(conjoinedPath)
-
-					# if file did contain virus, prompt for deletion
-					if (rules.match(absolutePath) != []):
-						#infectedFiles.append(absolutePath)
-						answer = QtWidgets.QInputDialog.getText(self, "Virus Found! " + absolutePath, "Please type Y/N: ")
-						if (answer[0] == 'Y'):
-							# removes file from directory
-							os.remove(absolutePath)
-
-				# handles if certain files cause program to crash
+					checkForMatch = rules.match(conjoinedPath, timeout = 10)
+					print(conjoinedPath)
 				except:
 					continue
-			# count += 1
+
+				# if file did contain virus, prompt for deletion
+				if (checkForMatch != []):
+					ui.changeToUnprotected()
+					answer = QtWidgets.QInputDialog.getText(self, "Virus Found! ", conjoinedPath + '   Please type Y/N: ')
+					if (answer[0] == 'Y'):
+						# removes path from directory
+						os.remove(conjoinedPath)
+					ui.changeToProtected()
+				else:
+					continue
 
 			## ADD SPECIFIED DIRECTORY OPTION
-
 			# time.sleep(0.05)
-			self.pbar.setValue(count)
-
-
-
-
-
-
-
-
-# for i in range(101):
-# time.sleep(0.05)
-# self.pbar.setValue(i)
+			# self.pbar.setValue(count)
