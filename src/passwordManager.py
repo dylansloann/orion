@@ -24,50 +24,50 @@ tempVar3 = ""
 passFileDump = []
 
 def submitNewUserPassword():
-        global userPassword
-        
-        newPass = newUserEntry.get()
-        passFile.write(newPass + "\n")
-        userPassword = newPass
-        newUserWindow.destroy()
-        introFunction()
+    global userPassword
+    
+    newPass = newUserEntry.get()
+    passFile.write(newPass + "\n")
+    userPassword = newPass
+    newUserWindow.destroy()
+    introFunction()
         
 def introFunction():
-        # Declaration that we're using global variables
-        global userPassword
-        
-        # Starts the intro screen asking the user for the password
-        introWindow = tk.Tk()
-        introWindow.title("Password Manager")
-        introWindow.geometry("400x200+750+350")
-        introLabel = tk.Label(text="Enter your login: ", font = ('Verdana'))
-        introEntry = tk.Entry(width=50)
-        introButton = tk.Button(text="SUBMIT", width=20, height=3, bg="dark green", fg="white", font = ('Verdana'), command=lambda:introOnClick(introEntry.get(), introWindow, introLabel, introEntry, introButton))
+    # Declaration that we're using global variables
+    global userPassword
+    
+    # Starts the intro screen asking the user for the password
+    introWindow = tk.Tk()
+    introWindow.title("Password Manager")
+    introWindow.geometry("400x200+750+350")
+    introLabel = tk.Label(text="Enter your login: ", font = ('Verdana', 13))
+    introEntry = tk.Entry(width=30, font = ('Verdana'))
+    introButton = tk.Button(text="SUBMIT", width=20, height=3, bg="midnight blue", fg="white", font = ('Verdana', 11), command=lambda:introOnClick(introEntry.get(), introWindow, introLabel, introEntry, introButton))
 
-        introLabel.pack(pady=10)
-        introEntry.pack(pady=10)
-        introButton.pack(pady=10) 
-        
-        introWindow.mainloop()
+    introLabel.pack(pady=10)
+    introEntry.pack(pady=10)
+    introButton.pack(pady=10) 
+    
+    introWindow.mainloop()
         
 def introOnClick(userEnteredPassword, inputWindow, inputLabel, inputEntry, inputButton):
-        global attemptCtr
+    global attemptCtr
+    
+    if userEnteredPassword == userPassword:
+        print("Access granted")
+        inputWindow.destroy()
+        passwordManagerViewer()
         
-        if userEnteredPassword == userPassword:
-            print("Access granted")
+    else: # Wrong password
+        attemptCtr += 1
+        print("Incorrect! You have " + str(10-attemptCtr) + " attempts left :/")
+        if attemptCtr == 10:
+            passFile.close()
+            os.remove("passwordList.txt")
             inputWindow.destroy()
-            passwordManagerViewer()
+        else:
+            inputEntry.delete(0, tk.END)
             
-        else: # Wrong password
-            attemptCtr += 1
-            print("Incorrect! You have " + str(10-attemptCtr) + " attempts left :/")
-            if attemptCtr == 10:
-                passFile.close()
-                os.remove("passwordList.txt")
-                inputWindow.destroy()
-            else:
-                inputEntry.delete(0, tk.END)
-                
 def passwordManagerViewer():
     global passFileDump
     global userPassword
@@ -79,10 +79,7 @@ def passwordManagerViewer():
     label1.pack(side="top")
     label1.insert(tk.END, "\t\tWebsite\t\t\tUsername\t\t\tPassword\n")
     
-    print(passFileDump)
-    
-    #scroll = tk.Scrollbar(label1)
-    #scroll.pack(side="right", fill="y", expand=False)    
+    # print(passFileDump)  
     
     # Need to update the text being displayed on screen
     for item in passFileDump:
@@ -92,7 +89,7 @@ def passwordManagerViewer():
         listItem = str("\t\t" + tempStr[0] + "\t\t\t" + tempStr[1] + "\t\t\t" + tempStr[2] + "\n")
         label1.insert(tk.END, listItem)
         
-    newInfoButton = tk.Button(text="NEW PASSWORD", bg="dark green", fg="white", width=25, height=3, font = ('Verdana'), command=lambda:submitNewInfo(passManWindow))
+    newInfoButton = tk.Button(text="NEW PASSWORD", bg="midnight blue", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:submitNewInfo(passManWindow))
     newInfoButton.pack(pady=10)
     
     #scroll.config(yscrollcommand=scroll.set)
@@ -106,12 +103,12 @@ def submitNewInfo(passManWindow):
     newInfoWindow.title("Password Manager")
     newInfoWindow.geometry("400x320+750+250")
     lab1 = tk.Label(text="Enter the website name: ", font = ('Verdana'))
-    ent1 = tk.Entry(width=50)
+    ent1 = tk.Entry(width=30, font = ('Verdana'))
     lab2 = tk.Label(text="Enter the username for the website: ", font = ('Verdana'))
-    ent2 = tk.Entry(width=50)
+    ent2 = tk.Entry(width=30, font = ('Verdana'))
     lab3 = tk.Label(text="Enter the password for the website: ", font = ('Verdana'))
-    ent3 = tk.Entry(width=50)
-    submitNewInfoButton = tk.Button(text="SUBMIT", bg="dark green", fg="white", width=25, height=3, font = ('Verdana'), command=lambda:updatePassFile(newInfoWindow, ent1, ent2, ent3))
+    ent3 = tk.Entry(width=30, font = ('Verdana'))
+    submitNewInfoButton = tk.Button(text="SUBMIT", bg="midnight blue", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:updatePassFile(newInfoWindow, ent1, ent2, ent3))
     
     lab1.pack(pady=10)
     ent1.pack()
@@ -136,12 +133,16 @@ def updatePassFile(newInfoWindow, in1, in2, in3):
         passwordManagerViewer()
 
 def showPasswordGUI():
+    """updating global variables for use in other functions (SPOOKY)
+        also becuase originally this was the main and now this "function" 
+        is being called in another file making these pre-globalized variables local"""
     global passFile
     global newUserEntry
     global newUserLabel
     global newUserWindow
     global passFileDump
     global userPassword
+
     # Main function
     pf = open("passwordList.txt", "a+")
     pf.close()
@@ -160,7 +161,7 @@ def showPasswordGUI():
             newUserWindow.geometry("400x200+750+350")
             newUserLabel = tk.Label(text="Enter a new login: ")
             newUserEntry = tk.Entry(width=50)
-            newUserButton = tk.Button(text="SUBMIT", bg="dark green", fg="white", width=25, height=3, font = ('Verdana'), command = submitNewUserPassword)
+            newUserButton = tk.Button(text="SUBMIT", bg="midnight blue", fg="white", width=25, height=3, font = ('Verdana', 11), command = submitNewUserPassword)
             
             # Pack up all of the compnents of the window and show it
             newUserLabel.pack(pady=10)

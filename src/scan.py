@@ -1,14 +1,15 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from rules import *
 import sys, os, time
-import main
+
 
 class scanWindow(QtWidgets.QWidget): 
-	def __init__(self): 
+	def __init__(self, parent):
+		self.parent = parent 
 		super().__init__()  
 		self.initUI() 
    
-	def initUI(self):  
+	def initUI(self):
 		self.pbar = QtWidgets.QProgressBar(self) 
 		self.pbar.setGeometry(30, 40, 200, 25) 
 		self.startButton = QtWidgets.QPushButton('Start', self) 
@@ -27,6 +28,10 @@ class scanWindow(QtWidgets.QWidget):
 		dirs = os.listdir(home)
 		count = 0
 
+		file_count = sum(len(files) for _, _, files in os.walk(r'C:\Users\dylan\Desktop'))
+		counter = file_count / 100
+		
+
 		# iterates through each directory
 		for root, dirs, files in os.walk(r'C:\Users\dylan\Desktop'):
 			# iterates through each file
@@ -38,18 +43,21 @@ class scanWindow(QtWidgets.QWidget):
 					checkForMatch = rules.match(conjoinedPath, timeout = 10)
 					print(conjoinedPath)
 				except:
+					count += counter
+					self.pbar.setValue(count)
 					continue
 
 				# if file did contain virus, prompt for deletion
 				if (checkForMatch != []):
-					ui.changeToUnprotected()
+					self.parent.changeToUnprotected()
 					answer = QtWidgets.QInputDialog.getText(self, "Virus Found! ", conjoinedPath + '   Please type Y/N: ')
 					if (answer[0] == 'Y'):
 						# removes path from directory
 						os.remove(conjoinedPath)
-					ui.changeToProtected()
-				else:
-					continue
+					self.parent.changeToProtected()
+				
+			count += 0.1
+			self.pbar.setValue(count)
 
 			## ADD SPECIFIED DIRECTORY OPTION
 			# time.sleep(0.05)
