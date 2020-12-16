@@ -1,7 +1,5 @@
 import tkinter as tk
 import os
-#import matplotlib as mp
-#import matplotlib.pyplot as plot
 
 # User password
 userPassword = ""
@@ -40,14 +38,15 @@ def introFunction():
         
         # Starts the intro screen asking the user for the password
         introWindow = tk.Tk()
-        introWindow.geometry("1280x840")
-        introLabel = tk.Label(text="Enter your password: ")
+        introWindow.title("Password Manager")
+        introWindow.geometry("400x200+750+350")
+        introLabel = tk.Label(text="Enter your login: ", font = ('Verdana'))
         introEntry = tk.Entry(width=50)
-        introButton = tk.Button(text="Submit", width=25, height=5, bg="green", fg="orange", command=lambda:introOnClick(introEntry.get(), introWindow, introLabel, introEntry, introButton))
-        
-        introLabel.pack()
-        introEntry.pack()
-        introButton.pack()
+        introButton = tk.Button(text="SUBMIT", width=20, height=3, bg="dark green", fg="white", font = ('Verdana'), command=lambda:introOnClick(introEntry.get(), introWindow, introLabel, introEntry, introButton))
+
+        introLabel.pack(pady=10)
+        introEntry.pack(pady=10)
+        introButton.pack(pady=10) 
         
         introWindow.mainloop()
         
@@ -74,10 +73,11 @@ def passwordManagerViewer():
     global userPassword
     
     passManWindow = tk.Tk()
-    passManWindow.geometry("1280x840")
-    label1 = tk.Text(borderwidth=3, relief="ridge", width=160, height=45)
+    passManWindow.title("Password Manager")
+    passManWindow.geometry("920x650+500+180")
+    label1 = tk.Text(borderwidth=5, relief="ridge", width=100, height=30, font = ('Verdana'))
     label1.pack(side="top")
-    label1.insert(tk.END, "\t\t\tWebsite\t\t\t\t\t\tUsername\t\t\t\t\t\tPassword\n")
+    label1.insert(tk.END, "\t\tWebsite\t\t\tUsername\t\t\tPassword\n")
     
     print(passFileDump)
     
@@ -89,11 +89,11 @@ def passwordManagerViewer():
         if item == userPassword:
             continue
         tempStr = item.split(" ")
-        listItem = str("\t\t" + tempStr[0] + "\t\t\t\t\t\t" + tempStr[1] + "\t\t\t\t\t\t" + tempStr[2] + "\n")
+        listItem = str("\t\t" + tempStr[0] + "\t\t\t" + tempStr[1] + "\t\t\t" + tempStr[2] + "\n")
         label1.insert(tk.END, listItem)
         
-    newInfoButton = tk.Button(text="New Password", width=25, height=5, command=lambda:submitNewInfo(passManWindow))
-    newInfoButton.pack()
+    newInfoButton = tk.Button(text="NEW PASSWORD", bg="dark green", fg="white", width=25, height=3, font = ('Verdana'), command=lambda:submitNewInfo(passManWindow))
+    newInfoButton.pack(pady=10)
     
     #scroll.config(yscrollcommand=scroll.set)
     passManWindow.mainloop()
@@ -103,22 +103,23 @@ def submitNewInfo(passManWindow):
     
     # Setup a new window to gather the information
     newInfoWindow = tk.Tk()
-    newInfoWindow.geometry("1280x840")
-    lab1 = tk.Label(text="Enter the website name: ")
+    newInfoWindow.title("Password Manager")
+    newInfoWindow.geometry("400x320+750+250")
+    lab1 = tk.Label(text="Enter the website name: ", font = ('Verdana'))
     ent1 = tk.Entry(width=50)
-    lab2 = tk.Label(text="Enter the username for the website: ")
+    lab2 = tk.Label(text="Enter the username for the website: ", font = ('Verdana'))
     ent2 = tk.Entry(width=50)
-    lab3 = tk.Label(text="Enter the password for the website: ")
+    lab3 = tk.Label(text="Enter the password for the website: ", font = ('Verdana'))
     ent3 = tk.Entry(width=50)
-    submitNewInfoButton = tk.Button(text="submit", width=25, height=5, command=lambda:updatePassFile(newInfoWindow, ent1, ent2, ent3))
+    submitNewInfoButton = tk.Button(text="SUBMIT", bg="dark green", fg="white", width=25, height=3, font = ('Verdana'), command=lambda:updatePassFile(newInfoWindow, ent1, ent2, ent3))
     
-    lab1.pack()
+    lab1.pack(pady=10)
     ent1.pack()
-    lab2.pack()
+    lab2.pack(pady=10)
     ent2.pack()
-    lab3.pack()
+    lab3.pack(pady=10)
     ent3.pack()
-    submitNewInfoButton.pack()
+    submitNewInfoButton.pack(pady=15)
     
     newInfoWindow.mainloop()
     
@@ -134,37 +135,45 @@ def updatePassFile(newInfoWindow, in1, in2, in3):
         
         passwordManagerViewer()
 
-# Main function
-pf = open("passwordList.txt", "a+")
-pf.close()
-with open("passwordList.txt", "r+") as passFile:
-    passFileDump = passFile.readlines()
-    for i in range(len(passFileDump)):
-        passFileDump[i] = passFileDump[i].strip("\n")
-    
-    # Lets the new user set their password
-    if passFileDump == []: # The password file is completely empty
+def showPasswordGUI():
+    global passFile
+    global newUserEntry
+    global newUserLabel
+    global newUserWindow
+    global passFileDump
+    global userPassword
+    # Main function
+    pf = open("passwordList.txt", "a+")
+    pf.close()
+    with open("passwordList.txt", "r+") as passFile:
+        passFileDump = passFile.readlines()
+        for i in range(len(passFileDump)):
+            passFileDump[i] = passFileDump[i].strip("\n")
         
-        # Pop up a window prompting the user to input their new password
-        # Possible double check on password (for correct syntax)
-        newUserWindow = tk.Tk()
-        newUserWindow.geometry("1280x840")
-        newUserLabel = tk.Label(text="Enter a new password: ")
-        newUserEntry = tk.Entry(width=50)
-        newUserButton = tk.Button(text="Submit", width=25, height=5, command = submitNewUserPassword)
+        # Lets the new user set their password
+        if passFileDump == []: # The password file is completely empty
+            
+            # Pop up a window prompting the user to input their new password
+            # Possible double check on password (for correct syntax)
+            newUserWindow = tk.Tk()
+            newUserWindow.title("Password Manager")
+            newUserWindow.geometry("400x200+750+350")
+            newUserLabel = tk.Label(text="Enter a new login: ")
+            newUserEntry = tk.Entry(width=50)
+            newUserButton = tk.Button(text="SUBMIT", bg="dark green", fg="white", width=25, height=3, font = ('Verdana'), command = submitNewUserPassword)
+            
+            # Pack up all of the compnents of the window and show it
+            newUserLabel.pack(pady=10)
+            newUserEntry.pack(pady=10)
+            newUserButton.pack(pady=10)
+            
+            newUserWindow.mainloop()
         
-        # Pack up all of the compnents of the window and show it
-        newUserLabel.pack()
-        newUserEntry.pack()
-        newUserButton.pack()
-        
-        newUserWindow.mainloop()
-    
-    # Returning user
-    else: # There is an existing password
-        # Gets the line with the password
-        print(passFileDump)
-        userPassword = passFileDump[0]
-        
-        introFunction()
+        # Returning user
+        else: # There is an existing password
+            # Gets the line with the password
+            print(passFileDump)
+            userPassword = passFileDump[0]
+            
+            introFunction()
         
