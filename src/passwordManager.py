@@ -38,11 +38,13 @@ def introFunction():
     
     # Starts the intro screen asking the user for the password
     introWindow = tk.Tk()
+    icon = tk.PhotoImage(file = '../assets/Icons/lock2.0.png')
+    introWindow.iconphoto(False, icon)
     introWindow.title("Password Manager")
     introWindow.geometry("400x200+750+350")
     introLabel = tk.Label(text="Enter your login: ", font = ('Verdana', 13))
     introEntry = tk.Entry(width=30, font = ('Verdana'))
-    introButton = tk.Button(text="SUBMIT", width=20, height=3, bg="midnight blue", fg="white", font = ('Verdana', 11), command=lambda:introOnClick(introEntry.get(), introWindow, introLabel, introEntry, introButton))
+    introButton = tk.Button(text="SUBMIT", width=20, height=3, bg="sea green", fg="white", font = ('Verdana', 11), command=lambda:introOnClick(introEntry.get(), introWindow, introLabel, introEntry, introButton))
 
     introLabel.pack(pady=10)
     introEntry.pack(pady=10)
@@ -73,6 +75,8 @@ def passwordManagerViewer():
     global userPassword
     
     passManWindow = tk.Tk()
+    icon = tk.PhotoImage(file = '../assets/Icons/lock.png')
+    passManWindow.iconphoto(False, icon)
     passManWindow.title("Password Manager")
     passManWindow.geometry("920x650+500+180")
     label1 = tk.Text(borderwidth=5, relief="ridge", width=100, height=30, font = ('Verdana'))
@@ -89,7 +93,7 @@ def passwordManagerViewer():
         listItem = str("\t\t" + tempStr[0] + "\t\t\t" + tempStr[1] + "\t\t\t" + tempStr[2] + "\n")
         label1.insert(tk.END, listItem)
         
-    newInfoButton = tk.Button(text="NEW PASSWORD", bg="midnight blue", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:submitNewInfo(passManWindow))
+    newInfoButton = tk.Button(text="NEW PASSWORD", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:submitNewInfo(passManWindow))
     newInfoButton.pack(pady=10)
     
     #scroll.config(yscrollcommand=scroll.set)
@@ -98,8 +102,10 @@ def passwordManagerViewer():
 def submitNewInfo(passManWindow):
     passManWindow.destroy()
     
-    # Setup a new window to gather the information
+    # Setup a new window to gather the new password information
     newInfoWindow = tk.Tk()
+    icon = tk.PhotoImage(file = '../assets/Icons/lock.png')
+    newInfoWindow.iconphoto(False, icon)
     newInfoWindow.title("Password Manager")
     newInfoWindow.geometry("400x320+750+250")
     lab1 = tk.Label(text="Enter the website name: ", font = ('Verdana'))
@@ -108,7 +114,7 @@ def submitNewInfo(passManWindow):
     ent2 = tk.Entry(width=30, font = ('Verdana'))
     lab3 = tk.Label(text="Enter the password for the website: ", font = ('Verdana'))
     ent3 = tk.Entry(width=30, font = ('Verdana'))
-    submitNewInfoButton = tk.Button(text="SUBMIT", bg="midnight blue", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:updatePassFile(newInfoWindow, ent1, ent2, ent3))
+    submitNewInfoButton = tk.Button(text="SUBMIT", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:updatePassFile(newInfoWindow, ent1, ent2, ent3))
     
     lab1.pack(pady=10)
     ent1.pack()
@@ -120,7 +126,7 @@ def submitNewInfo(passManWindow):
     
     newInfoWindow.mainloop()
     
-    # Destroy the window on buttonclick and run passwordManagerView() with the updated info
+    # Destroy the window on button click and run passwordManagerView() with the updated info
 
 # Write the new information to the file
 def updatePassFile(newInfoWindow, in1, in2, in3):
@@ -157,11 +163,13 @@ def showPasswordGUI():
             # Pop up a window prompting the user to input their new password
             # Possible double check on password (for correct syntax)
             newUserWindow = tk.Tk()
+            icon = tk.PhotoImage(file = '../assets/Icons/lock.png')
+            newUserWindow.iconphoto(False, icon)
             newUserWindow.title("Password Manager")
             newUserWindow.geometry("400x200+750+350")
             newUserLabel = tk.Label(text="Enter a new login: ")
             newUserEntry = tk.Entry(width=50)
-            newUserButton = tk.Button(text="SUBMIT", bg="midnight blue", fg="white", width=25, height=3, font = ('Verdana', 11), command = submitNewUserPassword)
+            newUserButton = tk.Button(text="SUBMIT", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command = submitNewUserPassword)
             
             # Pack up all of the compnents of the window and show it
             newUserLabel.pack(pady=10)

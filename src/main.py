@@ -2,19 +2,20 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from scan import *
 from passwordManager import *
 
-class Ui_MainWindow(QtWidgets.QWidget):
+class MainGUI(QtWidgets.QWidget):
     # default constructor of GUI window
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("Orion")
         MainWindow.resize(860, 591)
+        MainWindow.setWindowTitle("Orion")
+        MainWindow.setWindowIcon(QtGui.QIcon('../assets/Icons/orionIcon.png'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.createBackground()
         self.createButtons()
         self.setCheckMark()
+
         MainWindow.setCentralWidget(self.centralwidget)
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     # creates label and updates it with background image
     def createBackground(self):
@@ -38,9 +39,9 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.scanButton.setText("")
 
         # overlays button with scan png and resizes
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../assets/Icons/scan2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.scanButton.setIcon(icon)
+        scanIcon = QtGui.QIcon()
+        scanIcon.addPixmap(QtGui.QPixmap("../assets/Icons/scan2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.scanButton.setIcon(scanIcon)
         self.scanButton.setIconSize(QtCore.QSize(210, 246))
         self.scanButton.setObjectName("scanButton")
 
@@ -48,7 +49,7 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.scanButton.clicked.connect(self.scanPopup)
 
     def scanPopup(self):
-        self.scanner = scanWindow(parent=self)
+        self.scanner = ScanWindow(parent=self)
         self.scanner.show()
 
     def createBackupButton(self):
@@ -58,11 +59,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.backupButton.setText("")
 
         # overlays button with backup png and resizes
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../assets/Icons/backup2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.backupButton.setIcon(icon1)
+        backupIcon = QtGui.QIcon()
+        backupIcon.addPixmap(QtGui.QPixmap("../assets/Icons/backup2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.backupButton.setIcon(backupIcon)
         self.backupButton.setIconSize(QtCore.QSize(210, 246))
-
         self.backupButton.setObjectName("backupButton")
 
     def createPasswordButton(self):
@@ -72,11 +72,10 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.passwordButton.setText("")
 
         # overlays button with password png and resizes
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../assets/Icons/password2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.passwordButton.setIcon(icon2)
+        passwordIcon = QtGui.QIcon()
+        passwordIcon.addPixmap(QtGui.QPixmap("../assets/Icons/password2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.passwordButton.setIcon(passwordIcon)
         self.passwordButton.setIconSize(QtCore.QSize(210, 246))
-
         self.passwordButton.setObjectName("passwordButton")
 
         # links when button is clicked to passwordPopup function
@@ -89,10 +88,11 @@ class Ui_MainWindow(QtWidgets.QWidget):
         self.aboutButton = QtWidgets.QPushButton(self.centralwidget)
         self.aboutButton.setGeometry(QtCore.QRect(640, 330, 181, 211))
         self.aboutButton.setText("")
+        
         # overlays button with about png and resizes
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../assets/Icons/about2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.aboutButton.setIcon(icon3)
+        aboutIcon = QtGui.QIcon()
+        aboutIcon.addPixmap(QtGui.QPixmap("../assets/Icons/about2.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.aboutButton.setIcon(aboutIcon)
         self.aboutButton.setIconSize(QtCore.QSize(210, 246))
         self.aboutButton.setObjectName("aboutButton")
 
@@ -113,17 +113,12 @@ class Ui_MainWindow(QtWidgets.QWidget):
     def changeToProtected(self):
         self.checkMark.setPixmap(QtGui.QPixmap("../assets/Icons/checkmark.png"))
 
-    # reupdates names of widgets
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Orion"))
-
 
 # driver code
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = MainGUI()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
