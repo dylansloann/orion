@@ -60,15 +60,8 @@ def introOnClick(userEnteredPassword, inputWindow, inputLabel, inputEntry, input
         inputWindow.destroy()
         passwordManagerViewer()
         
-    else: # Wrong password
-        attemptCtr += 1
-        print("Incorrect! You have " + str(10-attemptCtr) + " attempts left :/")
-        if attemptCtr == 10:
-            passFile.close()
-            os.remove("passwordList.txt")
-            inputWindow.destroy()
-        else:
-            inputEntry.delete(0, tk.END)
+    else:
+        print("Incorrect Password")
             
 def passwordManagerViewer():
     global passFileDump
@@ -167,8 +160,8 @@ def showPasswordGUI():
             newUserWindow.iconphoto(False, icon)
             newUserWindow.title("Password Manager")
             newUserWindow.geometry("400x200+750+350")
-            newUserLabel = tk.Label(text="Enter a new login: ")
-            newUserEntry = tk.Entry(width=50)
+            newUserLabel = tk.Label(text="Enter a new login: ", font = ('Verdana', 13))
+            newUserEntry = tk.Entry(width=30, font = ('Verdana'))
             newUserButton = tk.Button(text="SUBMIT", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command = submitNewUserPassword)
             
             # Pack up all of the compnents of the window and show it
