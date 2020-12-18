@@ -72,8 +72,9 @@ class ScanWindow(QtWidgets.QWidget):
 			return
 		self.resumeBool = False
 		self.userDirectory = QtWidgets.QFileDialog.getExistingDirectory()
-		if (self.userDirectory == ''):	# if cancel is hit or no directory selected
-			return
+		
+		# if cancel is hit or no directory selected
+		if (self.userDirectory == ''): return
 		self.startScan()
 
 	def scanInProgressMessage(self):
