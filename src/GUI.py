@@ -2,8 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from scan import *
 from passwordManager import *
 
+## TODO: TURN OFF ALL PRINT STATEMENT WHEN MAKING .EXE
+
 class MainGUI(QtWidgets.QWidget):
-    # default constructor of GUI window
+    
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("Orion")
         MainWindow.resize(860, 591)
@@ -80,7 +82,8 @@ class MainGUI(QtWidgets.QWidget):
         self.passwordButton.clicked.connect(self.passwordPopup)
 
     def passwordPopup(self):
-        showPasswordGUI()
+        self.passwordInitate = PasswordManager()
+        # self.passwordInitate.showPasswordGUI()
 
     def createAboutButton(self):
         self.aboutButton = QtWidgets.QPushButton(self.centralwidget)

@@ -2,8 +2,10 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from rules import *
 import sys, os, time
 
+## TODO: FIX ICONS
 
 class ScanWindow(QtWidgets.QWidget): 
+
 	def __init__(self, parent):
 		self.parent = parent	# connects parent window (GUI) for altering
 
@@ -15,18 +17,25 @@ class ScanWindow(QtWidgets.QWidget):
 		self.mutex = QtCore.QMutex()
 		self.condition = QtCore.QWaitCondition()
 		self.userDirectory = os.path.expanduser("~")
-		self.specified = False
 		self.resumeBool = False
 		self.scanning = ScanningThread(self.mutex, self.condition, self.userDirectory)
    
 	def initUI(self):
 		#sets geometry/title and creates all buttons
-		self.setGeometry(700, 350, 550, 300) 
+		self.setGeometry(680, 350, 560, 300) 
 		self.setWindowTitle("File Scanner")
 		self.setWindowIcon(QtGui.QIcon('../assets/Icons/scanIcon2.0.png'))
+		self.createBackground()
 		self.createProgressBar()
 		self.createButtons()
 		self.show()
+
+	def createBackground(self):
+		self.background = QtWidgets.QLabel(self)
+		self.background.move(0, 0)
+		self.background.setText("")
+		self.background.setPixmap(QtGui.QPixmap("../assets/background/test2.png"))
+		self.background.setObjectName("background")
 
 	def createButtons(self):
 		self.createUserScanButton()
@@ -37,11 +46,11 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createProgressBar(self):
 		self.pbar = QtWidgets.QProgressBar(self) 
-		self.pbar.setGeometry(145, 40, 300, 25) 
+		self.pbar.setGeometry(150, 70, 300, 25) 
 
 	def createUserScanButton(self):
 		self.userScanButton = QtWidgets.QPushButton('User Directory Scan', self) 
-		self.userScanButton.move(40, 80)
+		self.userScanButton.setGeometry(55, 150, 150, 50)
 		self.userScanButton.clicked.connect(self.userScan)
 
 	def userScan(self):
@@ -49,13 +58,12 @@ class ScanWindow(QtWidgets.QWidget):
 			self.scanInProgressMessage()
 			return
 		self.resumeBool = False
-		self.specified = False
 		self.userDirectory = os.path.expanduser("~")	# reupdates user directory to home path
 		self.startScan()
 
 	def createSpecifiedScanButton(self):
-		self.specifiedScanButton = QtWidgets.QPushButton('User Directory Scan', self) 
-		self.specifiedScanButton.move(250, 80)  
+		self.specifiedScanButton = QtWidgets.QPushButton('Specified Directory Scan', self) 
+		self.specifiedScanButton.setGeometry(355, 150, 150, 50)
 		self.specifiedScanButton.clicked.connect(self.specifiedScan)
 
 	def specifiedScan(self):
@@ -63,7 +71,9 @@ class ScanWindow(QtWidgets.QWidget):
 			self.scanInProgressMessage()
 			return
 		self.resumeBool = False
-		self.specified = True
+		self.userDirectory = QtWidgets.QFileDialog.getExistingDirectory()
+		if (self.userDirectory == ''):	# if cancel is hit or no directory selected
+			return
 		self.startScan()
 
 	def scanInProgressMessage(self):
@@ -75,11 +85,6 @@ class ScanWindow(QtWidgets.QWidget):
 		scanBox.exec()
 
 	def startScan(self):
-		if (self.specified == True):
-			self.userDirectory = QtWidgets.QFileDialog.getExistingDirectory()
-			if (self.userDirectory == ''):	# if cancel is hit or no directory selected
-				return
-
 		# reupdates scanning thread with new passed in directory
 		self.scanning = ScanningThread(self.mutex, self.condition, self.userDirectory)
 		self.scanning.start()
@@ -126,7 +131,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createStopButton(self):
 		self.stopButton = QtWidgets.QPushButton('Stop', self) 
-		self.stopButton.move(150, 80) 
+		self.stopButton.setGeometry(230, 120, 100, 35) 
 		self.stopButton.clicked.connect(self.stopScan)
 
 	def stopScan(self):
@@ -135,10 +140,11 @@ class ScanWindow(QtWidgets.QWidget):
 		else:
 			self.scanning.resume()
 			self.condition.wakeAll()
+			self.resumeBool = False
 
 	def createResumebutton(self):
 		self.resumeButton = QtWidgets.QPushButton('Resume', self) 
-		self.resumeButton.move(150, 130) 
+		self.resumeButton.setGeometry(230, 170, 100, 35)
 		self.resumeButton.clicked.connect(self.resumeScan)
 
 	def resumeScan(self):
@@ -147,7 +153,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createCancelbutton(self):
 		self.cancelButton = QtWidgets.QPushButton('Cancel', self) 
-		self.cancelButton.move(150, 170) 
+		self.cancelButton.setGeometry(230, 220, 100, 35)
 		self.cancelButton.clicked.connect(self.cancelScan)
 
 	def cancelScan(self):
