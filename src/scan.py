@@ -207,13 +207,15 @@ class ScanningThread(QtCore.QThread):
 						self.mutex.unlock()
 
 				try:
-					conjoinedPath = os.path.join(root, file)	# attaches root of path for checking against YARA rules
+					# attaches root of path for checking against YARA rules
+					conjoinedPath = os.path.join(root, file)
 					
 					checkForMatch = rules.match(conjoinedPath, timeout = 10)
 					print(conjoinedPath)
 					progressBarCounter += fileIncrement
 
-					if (file[len(file) - 3: len(file)] == ("yar" or "ara")): raise Exception()		# skips files with .yar or .yara extension, len runs O(1)
+					# skips files with .yar or .yara extension, len runs O(1)
+					if (file[len(file) - 3: len(file)] == ("yar" or "ara")): raise Exception()
 
 				# handles if certain files cause program to crash/run excessive amount
 				except:
