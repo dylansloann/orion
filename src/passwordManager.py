@@ -13,13 +13,6 @@ class PasswordManagerWindow():
         self.userPassword = ""
         self.passFileDump = []
         self.showPasswordGUI()
-
-    def submitNewUserPassword(self):        
-        self.newPass = newUserEntry.get()
-        self.passFile.write(newPass + "\n")
-        self.userPassword = newPass
-        self.newUserWindow.destroy()
-        self.introFunction()
             
     def introFunction(self):
         # Starts the intro screen asking the user for the password
@@ -27,9 +20,9 @@ class PasswordManagerWindow():
         self.introWindow.resizable(0,0)
         icon = tk.PhotoImage(master = self.introWindow, file = '../assets/Icons/lock3.0.png')
         self.introWindow.iconphoto(False, icon)
-        background_image = tk.PhotoImage(master = self.introWindow, file = '../assets/background/passbackground.png')
-        background_label = tk.Label(self.introWindow, image=background_image)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        backgroundImage = tk.PhotoImage(master = self.introWindow, file = '../assets/background/passbackground.png')
+        backgroundLoad = tk.Label(self.introWindow, image=backgroundImage)
+        backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
         self.introWindow.title("Password Manager")
         self.introWindow.geometry("400x200+750+375")
         self.introEntry = tk.Entry(width=30, font = ('Verdana'))
@@ -55,9 +48,9 @@ class PasswordManagerWindow():
         self.passManWindow.resizable(0,0)
         icon = tk.PhotoImage(master = self.passManWindow, file = '../assets/Icons/lock2.0.png')
         self.passManWindow.iconphoto(False, icon)
-        background_image = tk.PhotoImage(master = self.passManWindow, file = '../assets/background/newpassbackground.png')
-        background_label = tk.Label(self.passManWindow, image=background_image)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        backgroundImage = tk.PhotoImage(master = self.passManWindow, file = '../assets/background/newpassbackground.png')
+        backgroundLoad = tk.Label(self.passManWindow, image=backgroundImage)
+        backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
         self.passManWindow.title("Password Manager")
         self.passManWindow.geometry("860x590+521+199")
         self.infoLabel = tk.Text(borderwidth=5, relief="ridge", width=85, height=25, font = ('Verdana'))
@@ -91,9 +84,9 @@ class PasswordManagerWindow():
         self.newInfoWindow.resizable(0,0)
         icon = tk.PhotoImage(master = self.newInfoWindow, file = '../assets/Icons/lock2.0.png')
         self.newInfoWindow.iconphoto(False, icon)
-        background_image = tk.PhotoImage(master = self.newInfoWindow, file = '../assets/background/newinfobackground.png')
-        background_label = tk.Label(self.newInfoWindow, image=background_image)
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        backgroundImage = tk.PhotoImage(master = self.newInfoWindow, file = '../assets/background/newinfobackground.png')
+        backgroundLoad = tk.Label(self.newInfoWindow, image=backgroundImage)
+        backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
         self.newInfoWindow.title("Password Manager")
         self.newInfoWindow.geometry("400x320+750+300")
         self.ent1 = tk.Entry(width=30, font = ('Verdana'))
@@ -144,15 +137,15 @@ class PasswordManagerWindow():
                 # Possible double check on password (for correct syntax)
                 self.newUserWindow = tk.Tk()
                 self.newUserWindow.resizable(0,0)
-                icon = tk.PhotoImage(master = self.newUserWindow, file = '../assets/Icons/lock2.0.png')
+                icon = tk.PhotoImage(master = self.newUserWindow, file = '../assets/Icons/lock3.0.png')
                 self.newUserWindow.iconphoto(False, icon)
-                background_image = tk.PhotoImage(master = self.newUserWindow, file = '../assets/background/newuserbackground.png')
-                background_label = tk.Label(self.newUserWindow, image=background_image)
-                background_label.place(x=0, y=0, relwidth=1, relheight=1)
+                backgroundImage = tk.PhotoImage(master = self.newUserWindow, file = '../assets/background/newuserbackground.png')
+                backgroundLoad = tk.Label(self.newUserWindow, image=backgroundImage)
+                backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
                 self.newUserWindow.title("Password Manager")
                 self.newUserWindow.geometry("400x200+750+375")
                 self.newUserEntry = tk.Entry(width=30, font = ('Verdana'))
-                self.newUserButton = tk.Button(text="SUBMIT", bg="Steelblue4", fg="white", width=25, height=3, font = ('Verdana', 11), command = self.submitNewUserPassword)
+                self.newUserButton = tk.Button(text="Submit", width=20, height=3, bg="Steelblue4", fg="white", font = ('Verdana', 11), command=lambda:self.submitNewUserPassword(self.newUserEntry.get(), self.passFile))
                 
                 # places all of the compnents of the window and show it
                 self.newUserEntry.place(x = 45, y = 55)
@@ -167,7 +160,14 @@ class PasswordManagerWindow():
                 self.userPassword = self.passFileDump[0]
                 self.introFunction()
 
-    def newUserwindowClosing(self):
+    def submitNewUserPassword(self, newUserEntry, passFile):        
+        self.newPass = newUserEntry
+        passFile.write(self.newPass + "\n")
+        self.userPassword = self.newPass
+        self.newUserWindow.destroy()
+        self.introFunction()
+
+    def newUserWindowClosing(self):
         global windowCurrentlyOpen
         windowCurrentlyOpen = False
-        self.newUserwindow.destroy()
+        self.newUserWindow.destroy()
