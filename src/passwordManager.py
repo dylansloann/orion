@@ -101,7 +101,7 @@ class PasswordManagerWindow():
         self.ent3 = tk.Entry(width=30, font = ('Verdana'))
         self.submitNewInfoButton = tk.Button(text="Submit", bg="Steelblue4", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:self.updatePassFile(self.newInfoWindow, self.ent1, self.ent2, self.ent3))
         
-        self.ent1.pack(pady=40)
+        self.ent1.pack(pady=30)
         self.ent2.pack(pady=10)
         self.ent3.pack(pady=30)
         self.submitNewInfoButton.pack()

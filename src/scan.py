@@ -231,7 +231,7 @@ class ScanningThread(QtCore.QThread):
 					# attaches root of path for checking against YARA rules
 					conjoinedPath = os.path.join(root, file)
 					
-					checkForMatch = rules.match(conjoinedPath, timeout = 10)
+					checkForMatch = rules.match(conjoinedPath, timeout = 7)
 					# print(conjoinedPath)
 					progressBarCounter += fileIncrement
 
