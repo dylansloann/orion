@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class AboutWindow(QtWidgets.QWidget): 
 
 	def __init__(self):

@@ -127,7 +127,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 		if (returnValue == QtWidgets.QMessageBox.Ok):
 			print("VIRUS DELETED")
-			# os.remove(path)  (KEEP COMMENTED JUST INCASE)
+			os.remove(path)
 		
 		self.condition.wakeAll()	# unpauses thread
 

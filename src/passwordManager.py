@@ -1,7 +1,6 @@
 import tkinter as tk
 import os
 
-## TODO: CUSTIMIZE PASSWORD MANAGER
 
 windowCurrentlyOpen = False
 
