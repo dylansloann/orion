@@ -25,7 +25,7 @@ class ScanWindow(QtWidgets.QWidget):
 		self.setGeometry(680, 350, 560, 300) 
 		self.setWindowTitle("File Scanner")
 		self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, False)
-		self.setWindowIcon(QtGui.QIcon('../assets/Icons/scanIcon2.0.png'))
+		self.setWindowIcon(QtGui.QIcon('../assets/Icons/scanIcon3.0.png'))
 		self.createBackground()
 		self.createProgressBar()
 		self.createButtons()
@@ -35,7 +35,7 @@ class ScanWindow(QtWidgets.QWidget):
 		self.background = QtWidgets.QLabel(self)
 		self.background.move(0, 0)
 		self.background.setText("")
-		self.background.setPixmap(QtGui.QPixmap("../assets/background/test2.png"))
+		self.background.setPixmap(QtGui.QPixmap("../assets/background/scanbackground.png"))
 		self.background.setObjectName("background")
 
 	def createButtons(self):
@@ -50,8 +50,12 @@ class ScanWindow(QtWidgets.QWidget):
 		self.pbar.setGeometry(145, 70, 300, 25) 
 
 	def createUserScanButton(self):
-		self.userScanButton = QtWidgets.QPushButton('User Directory Scan', self) 
-		self.userScanButton.setGeometry(55, 150, 150, 50)
+		self.userScanButton = QtWidgets.QPushButton('', self) 
+		self.userScanButton.setGeometry(55, 135, 150, 100)
+		fullScanIcon = QtGui.QIcon()
+		fullScanIcon.addPixmap(QtGui.QPixmap("../assets/Icons/fullscan3.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.userScanButton.setIcon(fullScanIcon)
+		self.userScanButton.setIconSize(QtCore.QSize(150, 85))
 		self.userScanButton.clicked.connect(self.userScan)
 
 	def userScan(self):
@@ -63,8 +67,12 @@ class ScanWindow(QtWidgets.QWidget):
 		self.startScan()
 
 	def createSpecifiedScanButton(self):
-		self.specifiedScanButton = QtWidgets.QPushButton('Specified Directory Scan', self) 
-		self.specifiedScanButton.setGeometry(355, 150, 150, 50)
+		self.specifiedScanButton = QtWidgets.QPushButton('', self)
+		self.specifiedScanButton.setGeometry(355, 135, 150, 100)
+		pickFolderIcon = QtGui.QIcon()
+		pickFolderIcon.addPixmap(QtGui.QPixmap("../assets/Icons/pickfolder3.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.specifiedScanButton.setIcon(pickFolderIcon)
+		self.specifiedScanButton.setIconSize(QtCore.QSize(150, 85))
 		self.specifiedScanButton.clicked.connect(self.specifiedScan)
 
 	def specifiedScan(self):
@@ -133,8 +141,12 @@ class ScanWindow(QtWidgets.QWidget):
 		completionBox.exec()
 
 	def createStopButton(self):
-		self.stopButton = QtWidgets.QPushButton('Stop', self) 
-		self.stopButton.setGeometry(230, 120, 100, 35) 
+		self.stopButton = QtWidgets.QPushButton('', self) 
+		self.stopButton.setGeometry(230, 125, 100, 35) 
+		stopIcon = QtGui.QIcon()
+		stopIcon.addPixmap(QtGui.QPixmap("../assets/Icons/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.stopButton.setIcon(stopIcon)
+		self.stopButton.setIconSize(QtCore.QSize(100, 27))
 		self.stopButton.clicked.connect(self.stopScan)
 
 	def stopScan(self):
@@ -146,8 +158,12 @@ class ScanWindow(QtWidgets.QWidget):
 			self.resumeBool = False
 
 	def createResumebutton(self):
-		self.resumeButton = QtWidgets.QPushButton('Resume', self) 
+		self.resumeButton = QtWidgets.QPushButton('', self) 
 		self.resumeButton.setGeometry(230, 170, 100, 35)
+		resumeIcon = QtGui.QIcon()
+		resumeIcon.addPixmap(QtGui.QPixmap("../assets/Icons/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.resumeButton.setIcon(resumeIcon)
+		self.resumeButton.setIconSize(QtCore.QSize(100, 27))
 		self.resumeButton.clicked.connect(self.resumeScan)
 
 	def resumeScan(self):
@@ -155,13 +171,17 @@ class ScanWindow(QtWidgets.QWidget):
 		self.stopScan()
 
 	def createCancelbutton(self):
-		self.cancelButton = QtWidgets.QPushButton('Cancel', self) 
-		self.cancelButton.setGeometry(230, 220, 100, 35)
+		self.cancelButton = QtWidgets.QPushButton('', self) 
+		self.cancelButton.setGeometry(230, 215, 100, 35)
+		cancelIcon = QtGui.QIcon()
+		cancelIcon.addPixmap(QtGui.QPixmap("../assets/Icons/cancel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+		self.cancelButton.setIcon(cancelIcon)
+		self.cancelButton.setIconSize(QtCore.QSize(100, 27))
 		self.cancelButton.clicked.connect(self.cancelScan)
 
 	def cancelScan(self):
 		self.scanning.cancel()
-		self.pbar.setValue(0)
+		self.pbar.reset()
 
 	def closeEvent(self, event=None):
 		self.scanning.cancel()
@@ -193,7 +213,6 @@ class ScanningThread(QtCore.QThread):
 		totalFileCount = sum(len(files) for _, _, files in os.walk(self.directory))
 		fileIncrement = 100 * (1/totalFileCount)
 		progressBarCounter = 0
-		print(progressBarCounter)
 
 		# iterates through each directory
 		for root, dirs, files in os.walk(self.directory):
@@ -214,7 +233,7 @@ class ScanningThread(QtCore.QThread):
 					conjoinedPath = os.path.join(root, file)
 					
 					checkForMatch = rules.match(conjoinedPath, timeout = 10)
-					print(conjoinedPath)
+					# print(conjoinedPath)
 					progressBarCounter += fileIncrement
 
 					# skips files with .yar or .yara extension, len runs O(1)
@@ -250,13 +269,10 @@ class ScanningThread(QtCore.QThread):
 
 	def stop(self):
 		self.stopped = True
-		print("SCAN STOPPED")
 
 	def resume(self):
 		self.stopped = False
-		print("SCAN RESUMED")
 
 	def cancel(self):
 		self.cancelled = True
-		print("SCAN CANCELLED")
 		
