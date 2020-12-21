@@ -35,7 +35,7 @@ class ScanWindow(QtWidgets.QWidget):
 		self.background = QtWidgets.QLabel(self)
 		self.background.move(0, 0)
 		self.background.setText("")
-		self.background.setPixmap(QtGui.QPixmap("../assets/background/scanbackground.png"))
+		self.background.setPixmap(QtGui.QPixmap("../assets/background/test.png"))
 		self.background.setObjectName("background")
 
 	def createButtons(self):
@@ -47,11 +47,11 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createProgressBar(self):
 		self.pbar = QtWidgets.QProgressBar(self) 
-		self.pbar.setGeometry(145, 70, 300, 25) 
+		self.pbar.setGeometry(110, 55, 365, 25) 
 
 	def createUserScanButton(self):
 		self.userScanButton = QtWidgets.QPushButton('', self) 
-		self.userScanButton.setGeometry(55, 135, 150, 100)
+		self.userScanButton.setGeometry(110, 100, 150, 100)
 		fullScanIcon = QtGui.QIcon()
 		fullScanIcon.addPixmap(QtGui.QPixmap("../assets/Icons/fullscan3.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.userScanButton.setIcon(fullScanIcon)
@@ -68,7 +68,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createSpecifiedScanButton(self):
 		self.specifiedScanButton = QtWidgets.QPushButton('', self)
-		self.specifiedScanButton.setGeometry(355, 135, 150, 100)
+		self.specifiedScanButton.setGeometry(290, 100, 150, 100)
 		pickFolderIcon = QtGui.QIcon()
 		pickFolderIcon.addPixmap(QtGui.QPixmap("../assets/Icons/pickfolder3.0.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.specifiedScanButton.setIcon(pickFolderIcon)
@@ -142,7 +142,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createStopButton(self):
 		self.stopButton = QtWidgets.QPushButton('', self) 
-		self.stopButton.setGeometry(230, 125, 100, 35) 
+		self.stopButton.setGeometry(110, 220, 100, 35) 
 		stopIcon = QtGui.QIcon()
 		stopIcon.addPixmap(QtGui.QPixmap("../assets/Icons/stop.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.stopButton.setIcon(stopIcon)
@@ -159,7 +159,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createResumebutton(self):
 		self.resumeButton = QtWidgets.QPushButton('', self) 
-		self.resumeButton.setGeometry(230, 170, 100, 35)
+		self.resumeButton.setGeometry(225, 220, 100, 35)
 		resumeIcon = QtGui.QIcon()
 		resumeIcon.addPixmap(QtGui.QPixmap("../assets/Icons/resume.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.resumeButton.setIcon(resumeIcon)
@@ -172,7 +172,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createCancelbutton(self):
 		self.cancelButton = QtWidgets.QPushButton('', self) 
-		self.cancelButton.setGeometry(230, 215, 100, 35)
+		self.cancelButton.setGeometry(340, 220, 100, 35)
 		cancelIcon = QtGui.QIcon()
 		cancelIcon.addPixmap(QtGui.QPixmap("../assets/Icons/cancel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
 		self.cancelButton.setIcon(cancelIcon)
