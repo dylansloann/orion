@@ -6,24 +6,27 @@ from passwordManager import *
 
 class MainGUI(QtWidgets.QWidget):
     
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Orion")
-        MainWindow.resize(860, 591)
-        MainWindow.setWindowTitle("Orion")
-        MainWindow.setWindowIcon(QtGui.QIcon('../assets/Icons/orionIcon.png'))
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setObjectName("centralwidget")
+    def __init__(self):
+        # initializes mainWindow
+        super().__init__()
+        self.setupUi()
+
+    def setupUi(self):
+        self.setObjectName("Orion")
+        self.resize(860, 591)
+        self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, False)
+        self.setWindowTitle("Orion")
+        self.setWindowIcon(QtGui.QIcon('../assets/Icons/orionIcon.png'))
         self.createBackground()
         self.createButtons()
         self.setCheckMark()
-
-        MainWindow.setCentralWidget(self.centralwidget)
+        self.show()
 
     def createBackground(self):
-        self.background = QtWidgets.QLabel(self.centralwidget)
+        self.background = QtWidgets.QLabel(self)
         self.background.setGeometry(QtCore.QRect(0, 0, 861, 591))
         self.background.setText("")
-        self.background.setPixmap(QtGui.QPixmap("../assets/background/background4.0.png"))
+        self.background.setPixmap(QtGui.QPixmap("../assets/background/background3.0.png"))
         self.background.setObjectName("background")
 
     def createButtons(self):
@@ -34,7 +37,7 @@ class MainGUI(QtWidgets.QWidget):
 
     def createScanButton(self):
         # resizes button
-        self.scanButton = QtWidgets.QPushButton(self.centralwidget)
+        self.scanButton = QtWidgets.QPushButton(self)
         self.scanButton.setGeometry(QtCore.QRect(40, 330, 181, 211))
         self.scanButton.setText("")
 
@@ -49,12 +52,11 @@ class MainGUI(QtWidgets.QWidget):
         self.scanButton.clicked.connect(self.scanPopup)
 
     def scanPopup(self):
-        self.scanner = ScanWindow(parent=self)
-        self.scanner.show()
+        self.scannerInitiate = ScanWindow(parent=self)
 
     def createBackupButton(self):
         # resizes button
-        self.backupButton = QtWidgets.QPushButton(self.centralwidget)
+        self.backupButton = QtWidgets.QPushButton(self)
         self.backupButton.setGeometry(QtCore.QRect(240, 330, 181, 211))
         self.backupButton.setText("")
 
@@ -67,7 +69,7 @@ class MainGUI(QtWidgets.QWidget):
 
     def createPasswordButton(self):
         # resizes button
-        self.passwordButton = QtWidgets.QPushButton(self.centralwidget)
+        self.passwordButton = QtWidgets.QPushButton(self)
         self.passwordButton.setGeometry(QtCore.QRect(440, 330, 181, 211))
         self.passwordButton.setText("")
 
@@ -82,10 +84,10 @@ class MainGUI(QtWidgets.QWidget):
         self.passwordButton.clicked.connect(self.passwordPopup)
 
     def passwordPopup(self):
-        self.passwordInitate = PasswordManager()
+        self.passwordInitiate = PasswordManager()
 
     def createAboutButton(self):
-        self.aboutButton = QtWidgets.QPushButton(self.centralwidget)
+        self.aboutButton = QtWidgets.QPushButton(self)
         self.aboutButton.setGeometry(QtCore.QRect(640, 330, 181, 211))
         self.aboutButton.setText("")
         
@@ -98,7 +100,7 @@ class MainGUI(QtWidgets.QWidget):
 
     def setCheckMark(self):
         # resizes/changes name
-        self.checkMark = QtWidgets.QLabel(self.centralwidget)
+        self.checkMark = QtWidgets.QLabel(self)
         self.checkMark.setGeometry(QtCore.QRect(640, 180, 51, 51))
         self.checkMark.setText("")
         

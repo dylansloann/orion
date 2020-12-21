@@ -25,6 +25,7 @@ class PasswordManager():
     def introFunction(self):
         # Starts the intro screen asking the user for the password
         self.introWindow = tk.Tk()
+        self.introWindow.resizable(0,0)
         icon = tk.PhotoImage(master = self.introWindow, file = '../assets/Icons/lock2.0.png')
         self.introWindow.iconphoto(False, icon)
         self.introWindow.title("Password Manager")
@@ -55,6 +56,7 @@ class PasswordManager():
                 
     def passwordManagerViewer(self):        
         self.passManWindow = tk.Tk()
+        self.passManWindow.resizable(0,0)
         icon = tk.PhotoImage(master = self.passManWindow, file = '../assets/Icons/lock2.0.png')
         self.passManWindow.iconphoto(False, icon)
         self.passManWindow.title("Password Manager")
@@ -89,6 +91,7 @@ class PasswordManager():
         
         # Setup a new window to gather the new password information
         self.newInfoWindow = tk.Tk()
+        self.newInfoWindow.resizable(0,0)
         icon = tk.PhotoImage(master = self.newInfoWindow, file = '../assets/Icons/lock2.0.png')
         self.newInfoWindow.iconphoto(False, icon)
         self.newInfoWindow.title("Password Manager")
@@ -146,6 +149,7 @@ class PasswordManager():
                 # Pop up a window prompting the user to input their new password
                 # Possible double check on password (for correct syntax)
                 self.newUserWindow = tk.Tk()
+                self.newUserWindow.resizable(0,0)
                 icon = tk.PhotoImage(master = self.newUserWindow, file = '../assets/Icons/lock2.0.png')
                 self.newUserWindow.iconphoto(False, icon)
                 self.newUserWindow.title("Password Manager")

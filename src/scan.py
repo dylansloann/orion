@@ -11,7 +11,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 		# initializes ScanWindow
 		super().__init__()
-		self.initUI()
+		self.setupUI()
 
 		# initializes mutex and condition for pausing threads
 		self.mutex = QtCore.QMutex()
@@ -20,10 +20,11 @@ class ScanWindow(QtWidgets.QWidget):
 		self.resumeBool = False
 		self.scanning = ScanningThread(self.mutex, self.condition, self.userDirectory)
    
-	def initUI(self):
+	def setupUI(self):
 		#sets geometry/title and creates all buttons
 		self.setGeometry(680, 350, 560, 300) 
 		self.setWindowTitle("File Scanner")
+		self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, False)
 		self.setWindowIcon(QtGui.QIcon('../assets/Icons/scanIcon2.0.png'))
 		self.createBackground()
 		self.createProgressBar()
@@ -75,6 +76,7 @@ class ScanWindow(QtWidgets.QWidget):
 		
 		# if cancel is hit or no directory selected
 		if (self.userDirectory == ''): return
+		
 		self.startScan()
 
 	def scanInProgressMessage(self):
