@@ -83,7 +83,6 @@ class MainGUI(QtWidgets.QWidget):
 
     def passwordPopup(self):
         self.passwordInitate = PasswordManager()
-        # self.passwordInitate.showPasswordGUI()
 
     def createAboutButton(self):
         self.aboutButton = QtWidgets.QPushButton(self.centralwidget)

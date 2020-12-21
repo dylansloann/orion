@@ -46,7 +46,7 @@ class ScanWindow(QtWidgets.QWidget):
 
 	def createProgressBar(self):
 		self.pbar = QtWidgets.QProgressBar(self) 
-		self.pbar.setGeometry(150, 70, 300, 25) 
+		self.pbar.setGeometry(145, 70, 300, 25) 
 
 	def createUserScanButton(self):
 		self.userScanButton = QtWidgets.QPushButton('User Directory Scan', self) 
