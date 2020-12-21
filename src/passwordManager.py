@@ -5,7 +5,7 @@ import os
 
 windowCurrentlyOpen = False
 
-class PasswordManager():
+class PasswordManagerWindow():
 
     def __init__(self):
         global windowCurrentlyOpen
@@ -26,7 +26,7 @@ class PasswordManager():
         # Starts the intro screen asking the user for the password
         self.introWindow = tk.Tk()
         self.introWindow.resizable(0,0)
-        icon = tk.PhotoImage(master = self.introWindow, file = '../assets/Icons/lock2.0.png')
+        icon = tk.PhotoImage(master = self.introWindow, file = '../assets/Icons/lock3.0.png')
         self.introWindow.iconphoto(False, icon)
         background_image = tk.PhotoImage(master = self.introWindow, file = '../assets/background/passbackground.png')
         background_label = tk.Label(self.introWindow, image=background_image)
@@ -34,7 +34,7 @@ class PasswordManager():
         self.introWindow.title("Password Manager")
         self.introWindow.geometry("400x200+750+375")
         self.introEntry = tk.Entry(width=30, font = ('Verdana'))
-        self.introButton = tk.Button(text="Submit", width=20, height=3, bg="sea green", fg="white", font = ('Verdana', 11), command=lambda:self.introOnClick(self.introEntry.get(), self.introWindow))
+        self.introButton = tk.Button(text="Submit", width=20, height=3, bg="Steelblue4", fg="white", font = ('Verdana', 11), command=lambda:self.introOnClick(self.introEntry.get(), self.introWindow))
         self.introEntry.place(x = 45, y = 55)
         self.introButton.place(x = 100, y = 90) 
         
@@ -73,7 +73,7 @@ class PasswordManager():
             listItem = str("\t\t" + tempStr[0] + "\t\t\t" + tempStr[1] + "\t\t\t" + tempStr[2] + "\n")
             self.infoLabel.insert(tk.END, listItem)
             
-        self.newInfoButton = tk.Button(text="New Password", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:self.submitNewInfo(self.passManWindow))
+        self.newInfoButton = tk.Button(text="New Password", bg="Steelblue4", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:self.submitNewInfo(self.passManWindow))
         self.newInfoButton.pack(pady=10)
         
         self.passManWindow.protocol("WM_DELETE_WINDOW", self.passManWindowClosing)
@@ -100,7 +100,7 @@ class PasswordManager():
         self.ent1 = tk.Entry(width=30, font = ('Verdana'))
         self.ent2 = tk.Entry(width=30, font = ('Verdana'))
         self.ent3 = tk.Entry(width=30, font = ('Verdana'))
-        self.submitNewInfoButton = tk.Button(text="Submit", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:self.updatePassFile(self.newInfoWindow, self.ent1, self.ent2, self.ent3))
+        self.submitNewInfoButton = tk.Button(text="Submit", bg="Steelblue4", fg="white", width=25, height=3, font = ('Verdana', 11), command=lambda:self.updatePassFile(self.newInfoWindow, self.ent1, self.ent2, self.ent3))
         
         self.ent1.pack(pady=40)
         self.ent2.pack(pady=10)
@@ -153,7 +153,7 @@ class PasswordManager():
                 self.newUserWindow.title("Password Manager")
                 self.newUserWindow.geometry("400x200+750+375")
                 self.newUserEntry = tk.Entry(width=30, font = ('Verdana'))
-                self.newUserButton = tk.Button(text="SUBMIT", bg="sea green", fg="white", width=25, height=3, font = ('Verdana', 11), command = self.submitNewUserPassword)
+                self.newUserButton = tk.Button(text="SUBMIT", bg="Steelblue4", fg="white", width=25, height=3, font = ('Verdana', 11), command = self.submitNewUserPassword)
                 
                 # places all of the compnents of the window and show it
                 self.newUserEntry.place(x = 45, y = 55)

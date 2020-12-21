@@ -1,8 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from rules import *
-import sys, os, time
+import sys, os
 
-## TODO: FIX ICONS
 
 class ScanWindow(QtWidgets.QWidget): 
 
@@ -25,7 +24,7 @@ class ScanWindow(QtWidgets.QWidget):
 		self.setGeometry(680, 350, 560, 300) 
 		self.setWindowTitle("File Scanner")
 		self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, False)
-		self.setWindowIcon(QtGui.QIcon('../assets/Icons/scanIcon3.0.png'))
+		self.setWindowIcon(QtGui.QIcon('../assets/Icons/scanIcon4.0.png'))
 		self.createBackground()
 		self.createProgressBar()
 		self.createButtons()
@@ -35,7 +34,7 @@ class ScanWindow(QtWidgets.QWidget):
 		self.background = QtWidgets.QLabel(self)
 		self.background.move(0, 0)
 		self.background.setText("")
-		self.background.setPixmap(QtGui.QPixmap("../assets/background/test.png"))
+		self.background.setPixmap(QtGui.QPixmap("../assets/background/scanbackground.png"))
 		self.background.setObjectName("background")
 
 	def createButtons(self):

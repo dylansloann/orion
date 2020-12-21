@@ -1,8 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from scan import *
 from passwordManager import *
+from backup import *
+from about import *
 
-## TODO: TURN OFF ALL PRINT STATEMENT WHEN MAKING .EXE
 
 class MainGUI(QtWidgets.QWidget):
     
@@ -48,7 +49,7 @@ class MainGUI(QtWidgets.QWidget):
         self.scanButton.setIconSize(QtCore.QSize(210, 246))
         self.scanButton.setObjectName("scanButton")
 
-        # links when button is clicked to passwordPopup function
+        # links when button is clicked to passwordPopup method
         self.scanButton.clicked.connect(self.scanPopup)
 
     def scanPopup(self):
@@ -67,6 +68,12 @@ class MainGUI(QtWidgets.QWidget):
         self.backupButton.setIconSize(QtCore.QSize(210, 246))
         self.backupButton.setObjectName("backupButton")
 
+        # links when button is clicked to backupPopup method
+        self.backupButton.clicked.connect(self.backupPopup)
+
+    def backupPopup(self):
+        self.backupInitiate = BackupWindow()
+
     def createPasswordButton(self):
         # resizes button
         self.passwordButton = QtWidgets.QPushButton(self)
@@ -80,11 +87,11 @@ class MainGUI(QtWidgets.QWidget):
         self.passwordButton.setIconSize(QtCore.QSize(210, 246))
         self.passwordButton.setObjectName("passwordButton")
 
-        # links when button is clicked to passwordPopup function
+        # links when button is clicked to passwordPopup method
         self.passwordButton.clicked.connect(self.passwordPopup)
 
     def passwordPopup(self):
-        self.passwordInitiate = PasswordManager()
+        self.passwordInitiate = PasswordManagerWindow()
 
     def createAboutButton(self):
         self.aboutButton = QtWidgets.QPushButton(self)
@@ -97,6 +104,12 @@ class MainGUI(QtWidgets.QWidget):
         self.aboutButton.setIcon(aboutIcon)
         self.aboutButton.setIconSize(QtCore.QSize(210, 246))
         self.aboutButton.setObjectName("aboutButton")
+
+        # links when button is clicked to aboutPopup method
+        self.aboutButton.clicked.connect(self.aboutPopup)
+
+    def aboutPopup(self):
+        self.aboutInitiate = AboutWindow()
 
     def setCheckMark(self):
         # resizes/changes name
