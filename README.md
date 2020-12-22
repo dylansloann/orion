@@ -29,7 +29,7 @@ advance it in the coming future.
 ## Setup
 1. Clone the repo
 ```sh
-git clone https://github.com/dylansloann/Antihax.git
+git clone https://github.com/dylansloann/orion
 ```
 2. Extract Files
 
