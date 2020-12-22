@@ -14,6 +14,8 @@ Orion was designed as an experimental project that's main purpose was to experie
 I hope that you enjoyed the project, and maybe even attempted to check out its features. I greatly enjoyed making this and hope to further 
 advance it in the coming future.
 
+[Demo Video](https://youtu.be/zjYu5025mgo)
+
 ## Screenshots
 ![MainGUI](./assets/readme/mainGUI.png)
 ![File Scanner](./assets/readme/scan.png)
