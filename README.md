@@ -33,7 +33,7 @@ git clone https://github.com/dylansloann/orion
 ```
 2. Extract Files
 
-3. Install modules in Built With (PyQt5, Tkinter, Yara)
+3. Install modules in Technologies (PyQt5, Tkinter, Yara)
 
 3. Run main.py
 
