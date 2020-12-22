@@ -27,7 +27,15 @@ advance it in the coming future.
 * Yara
 
 ## Setup
-Describe how to install / setup your local environement / add link to demo version.
+1. Clone the repo
+```sh
+git clone https://github.com/dylansloann/Antihax.git
+```
+2. Extract Files
+
+3. Install modules in Built With (PyQt5, Tkinter, Yara)
+
+3. Run main.py
 
 ## Features
 * Full scan of home directory or directed scan of any folder along with sub folders.
