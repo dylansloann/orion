@@ -18,6 +18,7 @@ advance it in the coming future.
 
 ## Screenshots
 ![MainGUI](./assets/readme/mainGUI.png)
+![MainGUI2.0](./assets/readme/mainGUI2.0.png)
 ![File Scanner](./assets/readme/scan.png)
 ![Password Manager (1)](./assets/readme/password1.png)
 ![Password Manager (2)](./assets/readme/password2.png)
