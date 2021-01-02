@@ -1,5 +1,5 @@
 # Orion
-> Orion is virus protection software geared more to the simple side of features.
+> Orion virus protection software.
 
 ## Table of contents
 * [General info](#general-info)
@@ -10,8 +10,8 @@
 * [Inspiration](#inspiration)
 
 ## General info
-Orion was designed as an experimental project that's main purpose was to experience the enjoyment of making a full-scale anti-virus softawre. 
-I hope that you enjoyed the project, and maybe even attempted to check out its features. I greatly enjoyed making this and hope to further 
+Orion was designed as an experimental project that's main purpose was to experiement in designed a more full scale anti-virus software. 
+I hope that you enjoyed the project, clone if you want to test it out. I enjoyed making this and hope to further 
 advance it in the coming future.
 
 [Demo Video](https://youtu.be/zjYu5025mgo)
