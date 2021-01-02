@@ -10,8 +10,8 @@
 * [Inspiration](#inspiration)
 
 ## General info
-Orion was designed as an experimental project that's main purpose was to experiement in designed a more full scale anti-virus software. 
-I hope that you enjoyed the project, clone if you want to test it out. I enjoyed making this and hope to further 
+Orion was designed as an experimental project that's main purpose was to experiement with designing a more full scale anti-virus software. 
+I hope that you enjoyed the project, clone it if you want to test it out. I enjoyed making this and hope to further 
 advance it in the coming future.
 
 [Demo Video](https://youtu.be/zjYu5025mgo)
