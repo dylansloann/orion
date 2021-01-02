@@ -1,5 +1,5 @@
 # Orion
-> Orion virus protection software.
+> virus protection software.
 
 ## Table of contents
 * [General info](#general-info)
