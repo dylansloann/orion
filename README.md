@@ -17,10 +17,10 @@ advance it in the coming future.
 [Demo Video](https://youtu.be/zjYu5025mgo)
 
 ## Screenshots
-![MainGUI](./assets/readme/mainGUI_2.0.png)
-![File Scanner](./assets/readme/scan_2.0.png)
-![Password Manager (1)](./assets/readme/password1_2.0.png)
-![Password Manager (2)](./assets/readme/password2_2.0.png)
+![MainGUI](./assets/readme/mainGUI_3.0.png)
+![File Scanner](./assets/readme/scan_3.0.png)
+![Password Manager (1)](./assets/readme/password1_3.0.png)
+![Password Manager (2)](./assets/readme/password2_3.0.png)
 
 ## Technologies
 * Python (main language)
