@@ -19,7 +19,7 @@ advance it in the coming future.
 ## Screenshots
 ![MainGUI](./assets/readme/MainGUI_3.0.png)
 ![File Scanner](./assets/readme/scan_3.0.png)
-![Password Manager (1)](./assets/readme/password1_3.0.png)
+![Password Manager (1)](./assets/readme/password1_3.0.png | width = 500)
 ![Password Manager (2)](./assets/readme/password2_3.0.png)
 
 ## Technologies
