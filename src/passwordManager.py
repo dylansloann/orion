@@ -1,7 +1,7 @@
 import tkinter as tk
 import os
 
-
+# Tkinter check for if it is already opened as it it not seperated by thread
 windowCurrentlyOpen = False
 
 class PasswordManagerWindow():
