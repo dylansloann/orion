@@ -1,9 +1,6 @@
 import tkinter as tk
 import os
 
-# Tkinter check for if it is already opened as it it not seperated by thread
-windowCurrentlyOpen = False
-
 class PasswordManagerWindow():
 
     def __init__(self):
@@ -171,3 +168,7 @@ class PasswordManagerWindow():
         global windowCurrentlyOpen
         windowCurrentlyOpen = False
         self.newUserWindow.destroy()
+
+
+# Tkinter check for if it is already opened as it is not seperated by thread
+windowCurrentlyOpen = False
