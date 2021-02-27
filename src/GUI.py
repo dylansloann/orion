@@ -1,4 +1,3 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
 from scan import *
 from passwordManager import *
 from backup import *
