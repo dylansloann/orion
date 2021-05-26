@@ -23,7 +23,6 @@ advance it in the coming future.
 ![Password Manager (2)](./assets/readme/password2_3.0.png)
 
 ## Technologies
-* Python (main language)
 * Qt (PyQt5)
 * Tkinter
 * Yara
