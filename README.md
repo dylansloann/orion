@@ -17,7 +17,7 @@ advance it in the coming future.
 [Demo Video](https://youtu.be/zjYu5025mgo)
 
 ## Screenshots
-![MainGUI](./assets/readme/MainGUI_4.0.png)
+![MainGUI](./assets/readme/mainGUI_4.0.png)
 ![File Scanner](./assets/readme/scan_4.0.png)
 ![Backup](./assets/readme/backup.png)
 ![Password Manager (1)](./assets/readme/password1_4.0.png)
