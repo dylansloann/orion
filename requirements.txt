@@ -1,0 +1,4 @@
+PyQt5==5.15.0
+PyQt5-sip==12.8.1
+pyqt5-tools==5.15.0.1.7.1
+yara-python==4.0.2

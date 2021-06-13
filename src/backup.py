@@ -16,13 +16,20 @@ class BackupWindow(QtWidgets.QWidget):
    
 	def setupUI(self):
 		#sets geometry/title and creates all buttons
-		self.setGeometry(680, 350, 560, 300) 
+		self.setFixedSize(560, 300)
 		self.setWindowTitle("Backup Files")
 		self.setWindowFlag(QtCore.Qt.WindowMaximizeButtonHint, False)
 		self.setWindowIcon(QtGui.QIcon('../assets/Icons/backup.png'))
 		self.createBackground()
 		self.createButtons()
+		self.center()
 		self.show()
+
+	def center(self):
+		qtRectangle = self.frameGeometry()
+		centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
+		qtRectangle.moveCenter(centerPoint)
+		self.move(qtRectangle.topLeft())
 
 	def createBackground(self):
 		self.background = QtWidgets.QLabel(self)

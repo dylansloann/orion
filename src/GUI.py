@@ -5,11 +5,11 @@ from about import *
 
 
 class MainGUI(QtWidgets.QWidget):
-    
     def __init__(self):
         # initializes mainWindow
         super().__init__()
         self.setupUi()
+        
 
     def setupUi(self):
         self.setObjectName("Orion")
@@ -20,11 +20,18 @@ class MainGUI(QtWidgets.QWidget):
         self.createBackground()
         self.createButtons()
         self.setCheckMark()
+        self.center()
         self.show()
+
+    def center(self):
+        qtRectangle = self.frameGeometry()
+        centerPoint = QtWidgets.QDesktopWidget().availableGeometry().center()
+        qtRectangle.moveCenter(centerPoint)
+        self.move(qtRectangle.topLeft())
 
     def createBackground(self):
         self.background = QtWidgets.QLabel(self)
-        self.background.setGeometry(QtCore.QRect(0, 0, 861, 591))
+        self.setFixedSize(860, 590)
         self.background.setText("")
         self.background.setPixmap(QtGui.QPixmap("../assets/background/background3.0.png"))
         self.background.setObjectName("background")

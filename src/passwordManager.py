@@ -21,7 +21,9 @@ class PasswordManagerWindow():
         backgroundLoad = tk.Label(self.introWindow, image=backgroundImage)
         backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
         self.introWindow.title("Password Manager")
-        self.introWindow.geometry("400x200+750+375")
+        positionRight = int(self.introWindow.winfo_screenwidth()/2 - 400/2) - 7
+        positionDown = int(self.introWindow.winfo_screenheight()/2 - 200/2) + 14
+        self.introWindow.geometry("400x200+{}+{}".format(positionRight, positionDown))
         self.introEntry = tk.Entry(width=30, font = ('Verdana'))
         self.introButton = tk.Button(text="Submit", width=20, height=3, bg="Steelblue4", fg="white", font = ('Verdana', 11), command=lambda:self.introOnClick(self.introEntry.get(), self.introWindow))
         self.introEntry.place(x = 45, y = 55)
@@ -49,7 +51,9 @@ class PasswordManagerWindow():
         backgroundLoad = tk.Label(self.passManWindow, image=backgroundImage)
         backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
         self.passManWindow.title("Password Manager")
-        self.passManWindow.geometry("860x590+521+199")
+        positionRight = int(self.passManWindow.winfo_screenwidth()/2 - 860/2) - 7
+        positionDown = int(self.passManWindow.winfo_screenheight()/2 - 590/2) + 14
+        self.passManWindow.geometry("860x590+{}+{}".format(positionRight, positionDown))
         self.infoLabel = tk.Text(borderwidth=5, relief="ridge", width=85, height=25, font = ('Verdana'))
         self.infoLabel.pack(side="top")
         self.infoLabel.insert(tk.END, "\t\tWebsite\t\t\tUsername\t\t\tPassword\n")  
@@ -85,7 +89,9 @@ class PasswordManagerWindow():
         backgroundLoad = tk.Label(self.newInfoWindow, image=backgroundImage)
         backgroundLoad.place(x=0, y=0, relwidth=1, relheight=1)
         self.newInfoWindow.title("Password Manager")
-        self.newInfoWindow.geometry("400x320+750+300")
+        positionRight = int(self.newInfoWindow.winfo_screenwidth()/2 - 400/2) - 7
+        positionDown = int(self.newInfoWindow.winfo_screenheight()/2 - 320/2) + 14
+        self.newInfoWindow.geometry("400x320+{}+{}".format(positionRight, positionDown))
         self.ent1 = tk.Entry(width=30, font = ('Verdana'))
         self.ent2 = tk.Entry(width=30, font = ('Verdana'))
         self.ent3 = tk.Entry(width=30, font = ('Verdana'))

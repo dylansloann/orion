@@ -17,10 +17,11 @@ advance it in the coming future.
 [Demo Video](https://youtu.be/zjYu5025mgo)
 
 ## Screenshots
-![MainGUI](./assets/readme/MainGUI_3.0.png)
-![File Scanner](./assets/readme/scan_3.0.png)
-![Password Manager (1)](./assets/readme/password1_3.0.png)
-![Password Manager (2)](./assets/readme/password2_3.0.png)
+![MainGUI](./assets/readme/MainGUI_4.0.png)
+![File Scanner](./assets/readme/scan_4.0.png)
+![Backup](./assets/readme/backup.png)
+![Password Manager (1)](./assets/readme/password1_4.0.png)
+![Password Manager (2)](./assets/readme/password2_4.0.png)
 
 ## Technologies
 * Qt (PyQt5)
@@ -33,8 +34,13 @@ advance it in the coming future.
 git clone https://github.com/dylansloann/orion
 ```
 2. Install modules in Technologies (PyQt5, Tkinter, Yara)
-
+```sh
+pip install -r requirements.txt
+```
 3. Run main.py
+```sh
+python src/main.py
+```
 
 ## Features
 * Full scan of home directory or directed scan of any folder along with sub folders.
